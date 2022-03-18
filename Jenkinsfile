@@ -17,7 +17,14 @@ stage ('Unit Testing')
    sh 'mvn test'
    }
 
-
+stage('Code Quality Analysis'){
+    
+    withSonarQubeEnv('kavisonar') 
+	    	{
+                 sh 'mvn sonar:sonar -Dsonar.organization=kavisonar1 -Dsonar.projectKey=kavisonar1'
+		
+    		}
+  }
 }
 
 
